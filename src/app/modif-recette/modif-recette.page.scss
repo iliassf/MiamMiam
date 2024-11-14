@@ -1,0 +1,55 @@
+ion-title {
+  color: white;
+}
+
+ion-input,
+ion-textarea {
+  --highlight-color-valid: #f9f777;
+}
+
+ion-item-divider {
+  --background: rgb(33, 33, 33);
+  --color: #f9f777;
+  font-weight: bold;
+  font-size: medium;
+
+  margin-top: 3vh;
+}
+
+.transparent {
+  --background: transparent;
+  --box-shadow: 0;
+}
+
+.ajouter {
+  color: green;
+}
+
+.delete {
+  color: #971e49;
+}
+
+.partager {
+  --background: #f9f777;
+  margin-top: 3vh;
+}
+
+ion-col {
+  border: solid 1px rgb(33, 33, 33);
+  color: white;
+  text-align: center;
+}
+
+.vertical-align-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.box {
+  display: flex;
+  margin-top: 1vh;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
+}

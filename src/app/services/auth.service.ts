@@ -1,0 +1,51 @@
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+} from 'firebase/auth';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
+  dbPath = 'users';
+  constructor(private Router: Router) {}
+
+  loginWithEmail(email: string, password: string) {
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        this.Router.navigateByUrl('home');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
+
+  signup(email: string, password: string, name: string) {
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        updateProfile(result.user, {
+          displayName: name,
+        });
+        const user = { ...result.user, displayName: name };
+        this.Router.navigateByUrl('home');
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  }
+
+  signout() {
+    const auth = getAuth();
+    signOut(auth).catch((error) => {});
+  }
+}

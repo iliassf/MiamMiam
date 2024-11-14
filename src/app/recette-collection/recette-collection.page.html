@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar class="backgroundHeader">
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/profil"
+        text="{{title}}"
+        [ngStyle]="{color:'white'}"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true"> {{recettes|json}} </ion-content>

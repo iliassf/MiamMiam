@@ -1,27 +1,12 @@
-#container {
+p {
+  margin: 10vh 0;
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  color: #f9f777;
+  font-size: x-large;
+  font-weight: bolder;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+ion-searchbar {
+  max-width: 95vw;
+  margin: auto;
 }

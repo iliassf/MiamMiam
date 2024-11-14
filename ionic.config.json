@@ -1,5 +1,8 @@
 {
   "name": "MiamMiam",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }

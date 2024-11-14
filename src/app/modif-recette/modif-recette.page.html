@@ -1,0 +1,141 @@
+<ion-header [translucent]="false">
+  <ion-toolbar class="backgroundHeader">
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/"
+        text="modifier : {{recette.title}}"
+        [ngStyle]="{color:'white'}"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    <ion-item-divider>
+      <ion-label>Informations générales</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-input placeholder="Enter text" [(ngModel)]="recette.title">
+        <div slot="label">Intitulé de la recette*</div></ion-input
+      >
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="Enter text" [(ngModel)]="recette.description"
+        ><div slot="label">Description</div></ion-textarea
+      >
+    </ion-item>
+    <ion-item>
+      <ion-input
+        placeholder="Enter text"
+        [(ngModel)]="recette.numberOfShares"
+        type="number"
+      >
+        <div slot="label">Nombre de personnes*</div></ion-input
+      >
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="Temps de préparation*"
+        [(ngModel)]="recette.time"
+        type="number"
+      >
+      </ion-input>
+    </ion-item>
+  </div>
+  <div>
+    <ion-item-divider>
+      <ion-label>Ingrédients*</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-input placeholder="Enter text" [(ngModel)]="ingredient.name">
+        <div slot="label">Nom de l'ingrédient</div></ion-input
+      >
+    </ion-item>
+    <ion-item>
+      <ion-input
+        label="quantité"
+        type="number"
+        placeholder="0"
+        [(ngModel)]="ingredient.quantity"
+      >
+      </ion-input>
+      <ion-list>
+        <ion-item>
+          <ion-select aria-label="unite" [(ngModel)]="ingredient.unity">
+            <ion-select-option value="g">g</ion-select-option>
+            <ion-select-option value="kg">kg</ion-select-option>
+            <ion-select-option value="cl">cl</ion-select-option>
+            <ion-select-option value="L">L</ion-select-option>
+            <ion-select-option value="unité">unité</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+    <ion-item
+      *ngIf="(ingredient.name.trim() !== '' && ingredient.unity !== '' && ingredient.quantity !== '')"
+    >
+      <ion-button class="transparent ajouter" (click)="ajouterIngredient()"
+        >Ajouter l'ingrédient</ion-button
+      ></ion-item
+    >
+
+    <ion-grid *ngIf="(recette.ingredients.length !== 0)">
+      <ion-row>
+        <ion-col>Nom</ion-col>
+        <ion-col>Quantité</ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row *ngFor="let ingredient of recette.ingredients; index as i">
+        <ion-col class="vertical-align-content">{{ingredient.name}}</ion-col>
+        <ion-col class="vertical-align-content"
+          >{{ingredient.quantity}} {{ingredient.unity}}</ion-col
+        >
+        <ion-col
+          ><ion-button
+            class="delete transparent"
+            (click)="deleteIngredient(ingredient)"
+            ><ion-icon name="trash-outline"></ion-icon></ion-button
+        ></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div>
+    <ion-item-divider>
+      <ion-label>Étapes*</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-input placeholder="Enter text" [(ngModel)]="step">
+        <div slot="label">Consigne de l'étape</div></ion-input
+      >
+      <ion-button
+        class="transparent ajouter"
+        *ngIf="(step.trim() !== '')"
+        (click)="recette.steps.push(step.trim());step=''"
+        ><ion-icon name="add-circle-outline"></ion-icon
+      ></ion-button>
+    </ion-item>
+    <div class="box steps" *ngFor="let step of recette.steps; index as i">
+      <p>{{i+1}}. {{step}}</p>
+      <ion-button class="delete transparent" (click)="deleteStep(i)"
+        ><ion-icon name="trash-outline"></ion-icon
+      ></ion-button>
+    </div>
+  </div>
+  <div>
+    <ion-item-divider>
+      <ion-label>Image</ion-label>
+    </ion-item-divider>
+    <ion-item>
+      <ion-input placeholder="Enter text" [(ngModel)]="recette.image">
+        <div slot="label">Url de l'image</div></ion-input
+      >
+    </ion-item>
+  </div>
+  <div class="vertical-align-content">
+    <ion-button class="partager" (click)="partagerRecette()"
+      >Partager la recette</ion-button
+    >
+  </div>
+</ion-content>

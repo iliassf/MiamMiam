@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar class="backgroundHeader">
+    <ion-buttons slot="start">
+      <ion-back-button
+        defaultHref="/"
+        text="{{recette.title}}"
+        [ngStyle]="{color:'white'}"
+      ></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="content">
+    <div
+      class="image"
+      [ngStyle]="{ 'background-image': 'url(' + recette.image + ')' }"
+    ></div>
+    <p class="smallText">proposé par {{recette.creator.name}}</p>
+    <p class="margin-top box" *ngIf="(recette.description)">
+      {{recette.description}}
+    </p>
+    <div class="inline spaceBetween margin-top">
+      <div class="box">
+        <ion-icon name="hourglass-outline"></ion-icon>
+        <p>{{recette.time}}m</p>
+      </div>
+      <div class="box">
+        <ion-icon name="pizza-outline"></ion-icon>
+        <p>{{recette.ingredients.length}}</p>
+      </div>
+      <div class="box">
+        <ion-icon name="people-outline"></ion-icon>
+        <p>{{recette.numberOfShares}}</p>
+      </div>
+      <div class="box">
+        <ion-icon
+          name="star"
+          *ngFor="let num of [].constructor(5); let i = index"
+          [ngStyle]="{ color: i < recette.average ? 'gold' : '' }"
+        ></ion-icon>
+        <p>({{recette.marks.length}} votes)</p>
+      </div>
+    </div>
+    <div class="inline switcher">
+      <ion-button
+        [ngStyle]="{'--background': seeIngredient ? '#f9f777' : '','--color':seeIngredient ? 'black' : ''}"
+        (click)="changeSeeIngredient(true)"
+        >Ingrédients</ion-button
+      >
+      <ion-button
+        [ngStyle]="{'--background': seeIngredient ? '' : '#f9f777','--color':seeIngredient ? '' : 'black'}"
+        (click)="changeSeeIngredient(false)"
+        >Étapes</ion-button
+      >
+    </div>
+    <div [hidden]="!seeIngredient">
+      <ion-grid>
+        <ion-row>
+          <ion-col>Nom</ion-col>
+          <ion-col>Quantité</ion-col>
+        </ion-row>
+        <ion-row *ngFor="let ingredient of recette.ingredients">
+          <ion-col>{{ingredient.name}}</ion-col>
+          <ion-col>{{ingredient.quantity}} {{ingredient.unity}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div [hidden]="seeIngredient">
+      <p class="box steps" *ngFor="let step of recette.steps; index as i">
+        {{i+1}}. {{step}}
+      </p>
+    </div>
+    <div *ngIf="!isCreatorOrDeconnected()" class="voteDiv">
+      <ion-button id="open-modal" expand="block"
+        >Noter cette recette</ion-button
+      >
+      <ion-modal
+        #modal
+        trigger="open-modal"
+        [canDismiss]="canDismiss"
+        [initialBreakpoint]="0.25"
+      >
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Votre avis compte</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="modal.dismiss()">Fermer</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <div class="starRating">
+              <ion-icon
+                name="star"
+                *ngFor="let num of [].constructor(5);let i = index"
+                [ngStyle]="{ color: i < mark.rate ? 'gold' : '' }"
+                (click)="voted(i+1)"
+              ></ion-icon>
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </div>
+  </div>
+</ion-content>

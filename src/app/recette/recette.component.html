@@ -1,0 +1,37 @@
+<div id="container" [routerLink]="['recette', recette.id]">
+  <div
+    class="image"
+    [ngStyle]="{ 'background-image': 'url(' + recette.image + ')' }"
+  >
+    <div class="spaceBetween" *ngIf="isCreator(recette.creator.id)">
+      <ion-button
+        (click)="$event.stopPropagation()"
+        [routerLink]="['recetteModif', recette.id]"
+        ><ion-icon name="construct-sharp" color="dark"></ion-icon
+      ></ion-button>
+      <ion-button (click)="deleteRecette($event, recette.id)"
+        ><ion-icon name="trash-sharp" color="danger"></ion-icon
+      ></ion-button>
+    </div>
+  </div>
+  <div id="information">
+    <div>
+      <p id="title">{{ recette.title }}</p>
+      <p id="creator">{{ recette.creator.name }}</p>
+    </div>
+    <div class="center">
+      <ion-icon name="hourglass-outline"></ion-icon>
+      <p>{{ recette.time }} min</p>
+    </div>
+    <div class="center">
+      <div>
+        <ion-icon
+          name="star"
+          *ngFor="let num of [].constructor(5); let i = index"
+          [ngStyle]="{ color: i < recette.average ? 'gold' : '' }"
+        ></ion-icon>
+      </div>
+      <p>({{ recette.marks.length }} votes)</p>
+    </div>
+  </div>
+</div>

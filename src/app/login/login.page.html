@@ -1,0 +1,34 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="backgroundHeader">
+    <ion-title>Connexion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="form">
+    <ion-input
+      labelPlacement="floating"
+      fill="outline"
+      label="Email"
+      type="email"
+      placeholder="email@example.com"
+      [(ngModel)]="email"
+    ></ion-input>
+    <br />
+    <ion-input
+      labelPlacement="floating"
+      fill="outline"
+      label="Password"
+      type="password"
+      [(ngModel)]="password"
+    ></ion-input>
+    <br />
+    <ion-button (click)="login()" expand="block" color="medium"
+      >connexion</ion-button
+    >
+    <br />
+    <h6 (click)="signup()">
+      Pas encore de tablier ? <ion-text>Cliquez ici</ion-text>
+    </h6>
+  </div>
+</ion-content>

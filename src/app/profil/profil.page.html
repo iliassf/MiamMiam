@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar class="backgroundHeader">
+    <ion-title>profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card color="light" (click)="redirect('my')">
+    <ion-card-header>
+      <ion-card-title>Mes recettes</ion-card-title>
+      <ion-card-title><ion-icon name="restaurant"></ion-icon></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Visualisez, modifiez ou supprimez les recettes dont vous êtes le chef.
+    </ion-card-content>
+  </ion-card>
+  <ion-card color="light" (click)="redirect('favorites')">
+    <ion-card-header>
+      <ion-card-title>Mes favories</ion-card-title>
+      <ion-card-title><ion-icon name="heart"></ion-icon></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      Retrouvez les recettes qui vous ont plu.
+    </ion-card-content>
+  </ion-card>
+  <ion-card color="light" (click)="signout()" *ngIf="isLog()">
+    <ion-card-header>
+      <ion-card-title>Déconnexion</ion-card-title>
+      <ion-card-title
+        ><ion-icon name="log-out-outline"></ion-icon
+      ></ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content> Se deconnecter de MiamMiam </ion-card-content>
+  </ion-card>
+</ion-content>

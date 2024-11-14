@@ -1,0 +1,43 @@
+#container {
+  background-color: rgb(33, 33, 33);
+  width: 95vw;
+  height: 30vh;
+  border-radius: 5px;
+}
+
+.image {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#title {
+  font-weight: bold;
+  font-size: large;
+}
+
+p {
+  margin: 0;
+  text-align: left;
+}
+
+#information {
+  display: flex;
+  padding: 1vh;
+  justify-content: space-between;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+ion-button {
+  --background: rgba(33, 33, 33, 0.8);
+  backdrop-filter: blur(10px);
+}

@@ -35,3 +35,40 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+ion-tab-bar {
+  --color-selected: #ffffff !important;
+  backdrop-filter: blur(15px) !important;
+  background-color: rgba(18, 18, 18, 0.8);
+  border-color: rgba(18, 18, 18, 0.8);
+}
+
+ion-tab-button {
+  background: transparent !important;
+}
+
+.image {
+  width: 100%;
+  height: 23.5vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: white;
+}
+
+.box {
+  padding: 2.5vw 5vw;
+  background-color: rgb(33, 33, 33);
+  border-radius: 7px;
+  text-align: center;
+}
+
+.steps {
+  text-align: left;
+  margin-bottom: 1vh !important;
+}
+
+.backgroundHeader {
+  --background: rgba(18, 18, 18, 0.8);
+  backdrop-filter: blur(15px);
+}
