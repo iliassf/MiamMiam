@@ -1,18 +1,25 @@
-#container {
-  background-color: rgb(33, 33, 33);
-  width: 95vw;
-  height: 30vh;
-  border-radius: 5px;
+ion-card {
+  color: white;
+  margin: 0 1vh;
 }
 
-.image {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+ion-card p {
+  font-size: medium;
+}
+
+ion-card ion-img {
+  width: 96vw;
+  height: 23.5vh;
+  object-fit: cover;
 }
 
 #title {
   font-weight: bold;
   font-size: large;
+  width: 100px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 p {
@@ -20,24 +27,24 @@ p {
   text-align: left;
 }
 
-#information {
-  display: flex;
-  padding: 1vh;
-  justify-content: space-between;
-}
-
-.center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.spaceBetween {
-  display: flex;
-  justify-content: space-between;
-}
-
 ion-button {
   --background: rgba(33, 33, 33, 0.8);
   backdrop-filter: blur(10px);
+}
+
+.align-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.align-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.p-absolute {
+  position: absolute;
 }

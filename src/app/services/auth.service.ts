@@ -7,6 +7,7 @@ import {
   signOut,
   updateProfile,
 } from 'firebase/auth';
+import { auth } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +17,6 @@ export class AuthService {
   constructor(private Router: Router) {}
 
   loginWithEmail(email: string, password: string) {
-    const auth = getAuth();
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;

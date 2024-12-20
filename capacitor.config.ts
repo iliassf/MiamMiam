@@ -16,8 +16,27 @@ const config: CapacitorConfig = {
     },
   },
   server: {
+    iosScheme: 'ionic',
     cleartext: true,
-    allowNavigation: ['developers.google.com', 'apis.google.com'],
+    allowNavigation: [
+      'developers.google.com',
+      'apis.google.com',
+      '*.firebaseio.com',
+      '*.googleapis.com',
+      'firebaseio.com',
+      'googleapis.com',
+    ],
+  },
+  plugins: {
+    Http: {
+      enabled: true,
+      allowNavigation: [
+        'firebaseio.com',
+        '*.firebaseio.com',
+        'googleapis.com',
+        '*.googleapis.com',
+      ],
+    },
   },
 };
 

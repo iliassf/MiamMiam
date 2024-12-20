@@ -15,7 +15,7 @@ export class RecetteDescriptionPage implements OnInit {
   seeIngredient: boolean = true;
   mark: Mark = new Mark();
 
-  async canDismiss(data?: any, role?: string) {
+  async canDismiss(role?: string) {
     return role !== 'gesture';
   }
 
@@ -29,7 +29,6 @@ export class RecetteDescriptionPage implements OnInit {
     this.recette = await this.RecetteService.getRecetteById(id);
     this.mark =
       this.recette.marks.find((elt) => {
-        // Recherchons si l'utilisateur a déjà voté
         return elt.id === getAuth().currentUser?.uid;
       }) || new Mark();
   }

@@ -3,6 +3,8 @@ PODS:
     - CapacitorCordova
   - CapacitorApp (6.0.1):
     - Capacitor
+  - CapacitorCommunityHttp (1.4.1):
+    - Capacitor
   - CapacitorCordova (6.1.2)
   - CapacitorHaptics (6.0.1):
     - Capacitor
@@ -16,6 +18,7 @@ PODS:
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - "CapacitorCommunityHttp (from `../../node_modules/@capacitor-community/http`)"
   - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
@@ -27,6 +30,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorApp:
     :path: "../../node_modules/@capacitor/app"
+  CapacitorCommunityHttp:
+    :path: "../../node_modules/@capacitor-community/http"
   CapacitorCordova:
     :path: "../../node_modules/@capacitor/ios"
   CapacitorHaptics:
@@ -41,12 +46,13 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Capacitor: 679f9673fdf30597493a6362a5d5bf233d46abc2
   CapacitorApp: 0bc633b4eae40a1f32cd2834788fad3bc42da6a1
+  CapacitorCommunityHttp: 7be90668527ef14ee10d08135b0e00fac9cf8247
   CapacitorCordova: f48c89f96c319101cd2f0ce8a2b7449b5fb8b3dd
   CapacitorHaptics: fe689ade56ef20ec9b041a753c6da70c5d8ec9a9
   CapacitorKeyboard: 2700f9b18687be021e28b5a09b59eb151a46d5e0
   CapacitorStatusBar: b81d4fb5d4e0064c712018071b3ab4b810b39a63
   CordovaPlugins: 6636f4c58f1aef4d803c6ff3e8344eb39c00ba68
 
-PODFILE CHECKSUM: 0381d09167db361ed446a10f049fd27bab1b40b1
+PODFILE CHECKSUM: 0cd406bd2d48a0b3378a48bf21ab95994969547b
 
 COCOAPODS: 1.15.2

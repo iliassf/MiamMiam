@@ -2,12 +2,6 @@
   padding: 2.5vw;
 }
 
-.inline {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 3vw;
-}
-
 .spaceBetween {
   justify-content: space-between;
 }
@@ -24,16 +18,13 @@ p {
   font-size: small;
 }
 
-.switcher {
-  margin-top: 4vh;
-}
-
 ion-button {
   flex: 1;
   --background: rgb(33, 33, 33);
   --background-activated: #f9f777;
 
   --color: white;
+  --color-activated: black;
 
   --border-radius: 0;
 
