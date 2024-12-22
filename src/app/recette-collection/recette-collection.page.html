@@ -10,4 +10,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"> {{recettes|json}} </ion-content>
+<ion-content [fullscreen]="true">
+  <app-recette-list [recettes]="recettes"></app-recette-list>
+</ion-content>

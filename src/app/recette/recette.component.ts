@@ -15,6 +15,7 @@ export class RecetteComponent {
 
   deleteRecette(event: any, id: string) {
     event.stopPropagation();
+    event.preventDefault();
     this.RecetteService.deleteRecette(id);
   }
 

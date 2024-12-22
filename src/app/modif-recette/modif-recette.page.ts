@@ -3,8 +3,6 @@ import { Recette } from '../models/recette';
 import { Ingredient } from '../models/ingredient';
 import { RecetteService } from '../services/recette.service';
 import { ToastController } from '@ionic/angular';
-import { getAuth } from 'firebase/auth';
-import { Creator } from '../models/creator';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

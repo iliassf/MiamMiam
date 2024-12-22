@@ -8,27 +8,18 @@ import { Subscription } from 'rxjs';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit, OnDestroy {
+export class HomePage implements OnInit {
   recettes: Recette[] = [];
   filteredRecettes: Recette[] = [];
   researchText: string = '';
-  private recettesSubscription: Subscription = new Subscription();
 
   constructor(private recetteService: RecetteService) {}
 
   ngOnInit(): void {
-    this.recettesSubscription = this.recetteService.recettes$.subscribe(
-      (recettes) => {
-        this.recettes = recettes;
-        this.filterRecettes();
-      }
-    );
-  }
-
-  ngOnDestroy(): void {
-    if (this.recettesSubscription) {
-      this.recettesSubscription.unsubscribe();
-    }
+    this.recetteService.getAllRecettes().subscribe((data) => {
+      this.recettes = data;
+      this.filterRecettes();
+    });
   }
 
   filterRecettes(): void {

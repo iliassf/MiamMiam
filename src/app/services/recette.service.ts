@@ -9,37 +9,18 @@ import {
   doc,
   addDoc,
   setDoc,
-  collectionGroup,
   where,
-  getDocs,
 } from 'firebase/firestore';
 import { db } from '../../environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecetteService {
   private dbPath = 'recettes';
-  private recettesSubject: BehaviorSubject<Recette[]> = new BehaviorSubject<
-    Recette[]
-  >([]);
-  public recettes$: Observable<Recette[]> = this.recettesSubject.asObservable();
 
-  constructor() {
-    this.initRealtimeUpdates();
-  }
-
-  private initRealtimeUpdates(): void {
-    const q = query(collection(db, this.dbPath));
-    onSnapshot(q, (querySnapshot) => {
-      const recettes: Recette[] = [];
-      querySnapshot.forEach((doc) => {
-        recettes.push(this.makeRecette(doc));
-      });
-      this.recettesSubject.next(recettes);
-    });
-  }
+  constructor() {}
 
   private makeRecette(doc: any): Recette {
     const data = doc.data();
@@ -57,6 +38,20 @@ export class RecetteService {
     );
   }
 
+  getAllRecettes(): Observable<Recette[]> {
+    return new Observable((observer) => {
+      const q = query(collection(db, this.dbPath));
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const recettes: Recette[] = [];
+        querySnapshot.forEach((doc) => {
+          recettes.push(this.makeRecette(doc));
+        });
+        observer.next(recettes);
+      });
+      return () => unsubscribe();
+    });
+  }
+
   async getRecetteById(id: string): Promise<Recette> {
     const docSnap = await getDoc(doc(db, this.dbPath, id));
 
@@ -67,14 +62,22 @@ export class RecetteService {
     }
   }
 
-  async getMyRecette(id: string): Promise<Recette[]> {
-    const q = query(collection(db, this.dbPath), where('creator.id', '==', id));
-    const querySnapshot = await getDocs(q);
-    const recettes: Recette[] = [];
-    querySnapshot.forEach((doc) => {
-      recettes.push(this.makeRecette(doc));
+  getMyRecette(id: string): Observable<Recette[]> {
+    return new Observable((observer) => {
+      const q = query(
+        collection(db, this.dbPath),
+        where('creator.id', '==', id)
+      );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const recettes: Recette[] = [];
+        querySnapshot.forEach((doc) => {
+          recettes.push(this.makeRecette(doc));
+        });
+        observer.next(recettes);
+      });
+
+      return () => unsubscribe();
     });
-    return recettes;
   }
 
   async deleteRecette(id: string): Promise<void> {
