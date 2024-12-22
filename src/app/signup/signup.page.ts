@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +14,11 @@ export class SignupPage {
   password1: string = '';
   password2: string = '';
 
-  constructor(private Auth: AuthService, private Router: Router) {}
+  constructor(
+    private Auth: AuthService,
+    private Router: Router,
+    private toastController: ToastController
+  ) {}
 
   signup(): void {
     if (
@@ -27,6 +32,19 @@ export class SignupPage {
       this.name = '';
       this.password1 = '';
       this.password2 = '';
+    } else {
+      this.presentToast('Veillez remplir tous les champs.');
     }
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2500,
+      position: 'top',
+      icon: 'alert-circle-outline',
+    });
+
+    await toast.present();
   }
 }

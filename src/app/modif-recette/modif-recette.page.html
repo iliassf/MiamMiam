@@ -1,9 +1,10 @@
 <ion-header [translucent]="false">
   <ion-toolbar class="backgroundHeader">
-    <ion-buttons slot="start">
+    <ion-title *ngIf="newRecette">Nouvelle recette</ion-title>
+    <ion-buttons slot="start" *ngIf="!newRecette">
       <ion-back-button
         defaultHref="/"
-        text="modifier : {{recette.title}}"
+        text="Modifier : {{recette.title}}"
         [ngStyle]="{color:'white'}"
       ></ion-back-button>
     </ion-buttons>
