@@ -17,15 +17,12 @@ export class AuthService {
   constructor(private Router: Router) {}
 
   loginWithEmail(email: string, password: string) {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+    return signInWithEmailAndPassword(auth, email, password).then(
+      (userCredential) => {
         const user = userCredential.user;
         this.Router.navigateByUrl('home');
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+      }
+    );
   }
 
   signup(email: string, password: string, name: string) {
