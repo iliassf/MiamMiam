@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button
         defaultHref="/profil"
-        text="Mes recettes"
+        text="Mes like"
         [ngStyle]="{color:'white'}"
       ></ion-back-button>
     </ion-buttons>
@@ -13,6 +13,6 @@
 <ion-content [fullscreen]="true">
   <app-recette-list [recettes]="recettes"></app-recette-list>
   <p class="box" *ngIf="recettes.length === 0">
-    Vous n'avez pas posté de recettes...
+    Vous n'avez pas de recettes favorites...
   </p>
 </ion-content>

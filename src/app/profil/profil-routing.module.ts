@@ -5,6 +5,7 @@ import { ProfilPage } from './profil.page';
 import { MesRecettesPage } from '../mes-recettes/mes-recettes.page';
 import { RecetteDescriptionPage } from '../recette-description/recette-description.page';
 import { ModifRecettePage } from '../modif-recette/modif-recette.page';
+import { MesFavoritesPage } from '../mes-favorites/mes-favorites.page';
 
 const routes: Routes = [
   {
@@ -21,6 +22,18 @@ const routes: Routes = [
   },
   {
     path: 'mesRecettes/recetteModif/:id',
+    component: ModifRecettePage,
+  },
+  {
+    path: 'mesFavorites',
+    component: MesFavoritesPage,
+  },
+  {
+    path: 'mesFavorites/recette/:id',
+    component: RecetteDescriptionPage,
+  },
+  {
+    path: 'mesFavorites/recetteModif/:id',
     component: ModifRecettePage,
   },
 ];

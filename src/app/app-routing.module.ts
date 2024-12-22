@@ -59,6 +59,10 @@ const routes: Routes = [
       ),
     canActivate: [authGuard],
   },
+  {
+    path: 'mes-favorites',
+    loadChildren: () => import('./mes-favorites/mes-favorites.module').then( m => m.MesFavoritesPageModule)
+  },
 ];
 
 @NgModule({

@@ -34,7 +34,8 @@ export class RecetteService {
       data['steps'] || [],
       data['image'] || '',
       data['time'] || 0,
-      data['numberOfShares'] || 1
+      data['numberOfShares'] || 1,
+      data['likes'] || []
     );
   }
 
@@ -67,6 +68,24 @@ export class RecetteService {
       const q = query(
         collection(db, this.dbPath),
         where('creator.id', '==', id)
+      );
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const recettes: Recette[] = [];
+        querySnapshot.forEach((doc) => {
+          recettes.push(this.makeRecette(doc));
+        });
+        observer.next(recettes);
+      });
+
+      return () => unsubscribe();
+    });
+  }
+
+  getMyFavorites(id: string): Observable<Recette[]> {
+    return new Observable((observer) => {
+      const q = query(
+        collection(db, this.dbPath),
+        where('likes', 'array-contains', id)
       );
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const recettes: Recette[] = [];

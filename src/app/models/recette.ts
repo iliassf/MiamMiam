@@ -14,6 +14,7 @@ export class Recette {
   image: string;
   time: number;
   numberOfShares: number;
+  likes: string[];
 
   constructor(
     id: string = '',
@@ -25,7 +26,8 @@ export class Recette {
     steps: string[] = [],
     image: string = '',
     time: number = 0,
-    numberOfShares: number = 1
+    numberOfShares: number = 1,
+    likes: string[] = []
   ) {
     this.id = id;
     this.title = title;
@@ -38,6 +40,7 @@ export class Recette {
     this.time = time;
     this.average = this.recetteAverage(marks);
     this.numberOfShares = numberOfShares;
+    this.likes = likes;
   }
 
   recetteAverage(marks: Mark[]): number {
@@ -63,6 +66,7 @@ export class Recette {
       image: this.image,
       time: this.time,
       numberOfShares: this.numberOfShares,
+      likes: this.likes,
     };
   }
 }

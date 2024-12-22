@@ -1,10 +1,6 @@
 <ion-card [routerLink]="['recette', recette.id]">
-  <ion-grid
-    class="p-absolute"
-    *ngIf="isCreator(recette.creator.id)"
-    [fixed]="true"
-  >
-    <ion-row>
+  <ion-grid class="p-absolute" [fixed]="true">
+    <ion-row *ngIf="isCreator(recette.creator.id)">
       <ion-col class="ion-text-start">
         <ion-button (click)="deleteRecette($event, recette.id)"
           ><ion-icon name="trash-sharp" color="danger"></ion-icon
@@ -15,6 +11,15 @@
           (click)="$event.stopPropagation()"
           [routerLink]="['recetteModif', recette.id]"
           ><ion-icon name="construct-sharp" color="dark"></ion-icon></ion-button
+      ></ion-col>
+    </ion-row>
+    <ion-row *ngIf="!isCreator(recette.creator.id) && isConnected()">
+      <ion-col class="ion-text-end">
+        <ion-button (click)="like($event)"
+          ><ion-icon
+            name="heart"
+            [color]="hasLiked() ? 'danger' : 'dark'"
+          ></ion-icon></ion-button
       ></ion-col>
     </ion-row>
   </ion-grid>
