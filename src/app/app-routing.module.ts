@@ -52,11 +52,12 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'recette-collection',
+    path: 'mes-recettes',
     loadChildren: () =>
-      import('./recette-collection/recette-collection.module').then(
-        (m) => m.RecetteCollectionPageModule
+      import('./mes-recettes/mes-recettes.module').then(
+        (m) => m.MesRecettesPageModule
       ),
+    canActivate: [authGuard],
   },
 ];
 

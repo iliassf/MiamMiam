@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RecetteCollectionPageRoutingModule } from './recette-collection-routing.module';
-
-import { RecetteCollectionPage } from './recette-collection.page';
+import { MesRecettesPageRoutingModule } from './mes-recettes-routing.module';
 import { SharedRecetteListModule } from '../modules/sharedRecetteList.module';
+
+import { MesRecettesPage } from './mes-recettes.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RecetteCollectionPageRoutingModule,
+    MesRecettesPageRoutingModule,
     SharedRecetteListModule,
   ],
-  declarations: [RecetteCollectionPage],
+  declarations: [MesRecettesPage],
 })
-export class RecetteCollectionPageModule {}
+export class MesRecettesPageModule {}

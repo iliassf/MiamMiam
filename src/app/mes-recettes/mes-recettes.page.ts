@@ -6,13 +6,12 @@ import { getAuth } from 'firebase/auth';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-recette-collection',
-  templateUrl: './recette-collection.page.html',
-  styleUrls: ['./recette-collection.page.scss'],
+  selector: 'app-mes-recettes',
+  templateUrl: './mes-recettes.page.html',
+  styleUrls: ['./mes-recettes.page.scss'],
 })
-export class RecetteCollectionPage implements OnInit, OnDestroy {
+export class MesRecettesPage implements OnInit, OnDestroy {
   recettes: Recette[] = [];
-  title: string = '';
   userId: string | null = getAuth().currentUser!.uid;
   recetteObservable: Observable<Recette[]> = new Observable();
   subscription: Subscription | null = null;
@@ -27,20 +26,13 @@ export class RecetteCollectionPage implements OnInit, OnDestroy {
   }
 
   initRecetteObservable(): void {
-    const type = this.route.snapshot.params['collection'];
     this.userId = getAuth().currentUser!.uid;
 
-    if (type === 'my') {
-      this.title = 'Mes recettes';
-
-      this.subscription = this.RecetteService.getMyRecette(
-        this.userId
-      ).subscribe((data) => {
+    this.subscription = this.RecetteService.getMyRecette(this.userId).subscribe(
+      (data) => {
         this.recettes = data;
-      });
-    } else {
-      this.title = 'Mes favoris';
-    }
+      }
+    );
   }
 
   ionViewWillEnter() {
