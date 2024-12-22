@@ -133,6 +133,10 @@
       >
     </ion-item>
   </div>
+  <ion-button color="medium" (click)="takePicture()"
+    >Prendre une photo</ion-button
+  >
+  <ion-img [src]="imageURL" *ngIf="imageURL !== null"></ion-img>
   <div class="vertical-align-content">
     <ion-button class="partager" (click)="partagerRecette()"
       >Partager la recette</ion-button

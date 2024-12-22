@@ -21,8 +21,8 @@ const routes: Routes = [
   {
     path: 'new-recette',
     loadChildren: () =>
-      import('./new-recette/new-recette.module').then(
-        (m) => m.NewRecettePageModule
+      import('./modif-recette/modif-recette.module').then(
+        (m) => m.ModifRecettePageModule
       ),
     canActivate: [authGuard],
   },
@@ -49,6 +49,7 @@ const routes: Routes = [
       import('./modif-recette/modif-recette.module').then(
         (m) => m.ModifRecettePageModule
       ),
+    canActivate: [authGuard],
   },
   {
     path: 'recette-collection',

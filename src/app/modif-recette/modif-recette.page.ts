@@ -4,16 +4,22 @@ import { Ingredient } from '../models/ingredient';
 import { RecetteService } from '../services/recette.service';
 import { ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { getAuth } from 'firebase/auth';
+import { Creator } from '../models/creator';
+
+import { Camera, CameraResultType } from '@capacitor/camera';
 
 @Component({
   selector: 'app-modif-recette',
   templateUrl: './modif-recette.page.html',
   styleUrls: ['./modif-recette.page.scss'],
 })
-export class ModifRecettePage implements OnInit {
+export class ModifRecettePage {
   recette: Recette = new Recette();
   ingredient: Ingredient = new Ingredient();
   step: string = '';
+  imageURL: string | null = null;
+  newRecette = true;
 
   constructor(
     private RecetteService: RecetteService,
@@ -21,9 +27,12 @@ export class ModifRecettePage implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  async ionViewWillEnter(): Promise<void> {
     let id = this.route.snapshot.params['id'];
-    this.recette = await this.RecetteService.getRecetteById(id);
+    if (id != undefined) {
+      this.recette = await this.RecetteService.getRecetteById(id);
+      this.newRecette = false;
+    }
   }
 
   ajouterIngredient(): void {
@@ -51,7 +60,16 @@ export class ModifRecettePage implements OnInit {
       this.recette.numberOfShares >= 1 &&
       this.recette.time >= 1
     ) {
-      await this.RecetteService.updateRecette(this.recette, this.recette.id);
+      if (this.newRecette) {
+        this.recette.creator = new Creator(
+          getAuth().currentUser?.uid!,
+          getAuth().currentUser?.displayName!
+        );
+        await this.RecetteService.addRecette(this.recette);
+        this.recette = new Recette();
+      } else {
+        await this.RecetteService.updateRecette(this.recette, this.recette.id);
+      }
       this.presentToast(
         'Votre recette est entre les mains de nos chefs',
         'restaurant-outline'
@@ -74,4 +92,14 @@ export class ModifRecettePage implements OnInit {
 
     await toast.present();
   }
+
+  takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri,
+    });
+
+    if (image.webPath) this.imageURL = image.webPath;
+  };
 }
