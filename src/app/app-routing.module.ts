@@ -61,7 +61,11 @@ const routes: Routes = [
   },
   {
     path: 'mes-favorites',
-    loadChildren: () => import('./mes-favorites/mes-favorites.module').then( m => m.MesFavoritesPageModule)
+    loadChildren: () =>
+      import('./mes-favorites/mes-favorites.module').then(
+        (m) => m.MesFavoritesPageModule
+      ),
+    canActivate: [authGuard],
   },
 ];
 
